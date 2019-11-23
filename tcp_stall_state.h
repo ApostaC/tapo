@@ -15,6 +15,7 @@ struct tcp_stall_state {
 	int ca_state;
 
 	double cur_time;
+    double abs_time;
 	double duration;
 	double srtt;
 	double rto;

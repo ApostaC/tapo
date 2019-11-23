@@ -11,6 +11,7 @@ void init_tcp_stall(struct tcp_state *ts, struct tcp_stall_state *tss, double du
 	tss->ca_state = ts->ca_state;
 
 	tss->cur_time = ts->last_time - ts->start_time;
+    tss->abs_time = ts->last_time;
 	tss->duration = duration;
 	tss->srtt = TICK_TO_TIME(ts->rtt.srtt >> 3);
 	tss->rto = TICK_TO_TIME(ts->rtt.rto);
@@ -88,6 +89,7 @@ void dump_tss_info(FILE *fp, struct tcp_stall_state *tss)
 	fprintf(fp, "rwnd = %d, ", tss->rwnd);
 	fprintf(fp, "ca_state = %s, ", tcp_ca_state[tss->ca_state]);
 	fprintf(fp, "cur_time = %.3lf, ", tss->cur_time);
+	fprintf(fp, "abs_time = %.3lf, ", tss->abs_time);
 	fprintf(fp, "duration = %.3lf, ", tss->duration);
 	fprintf(fp, "srtt = %.3lf, ", tss->srtt);
 	fprintf(fp, "rto = %.3lf, ", tss->rto);
