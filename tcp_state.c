@@ -179,7 +179,7 @@ static void handle_in_pkt(struct tcp_state *ts, struct tcphdr *th, double time, 
 			 ack_seq = ntohl(th->ack_seq);
 	if (IS_SYN(th)) {
 		ts->rwnd_scale = (1 << ts->option.wscale);
-		ts->init_rwnd = ntohs(th->window) * ts->rwnd_scale;
+		ts->init_rwnd = ntohs(th->window);// * ts->rwnd_scale;
 	}
 
 	ts->rwnd = ntohs(th->window) * ts->rwnd_scale;
